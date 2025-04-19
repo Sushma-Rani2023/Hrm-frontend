@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import {
   Form,
   FormGroup,
@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import dev_url from "../config";
 // import { useNavigation } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 const CompanyForm = () => {
   const [formData, setFormData] = useState({
@@ -35,6 +35,8 @@ const CompanyForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 //  const navigation = useNavigation()
+const navigation = useNavigate()
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -54,6 +56,7 @@ const CompanyForm = () => {
 
     if (res.status==200){
       // navigation('/admin/dashboard')
+      navigation('/admin/dashboard')
       console.log('navigatingg to dashbaord')
       
     }

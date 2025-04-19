@@ -9,6 +9,7 @@ import EmployeeForm from "./Component/RegisterEmployee";
 import System from "./pages/dashboard/SystemAdmin";
 import EmployeeDashboard from "./pages/dashboard/Employee";
 import EmployerAttendanceDashboard from "./pages/dashboard/EmployerDashboard";
+import EmployeeLeaveApplication from "./pages/Apply_leave";
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -35,7 +36,7 @@ function App() {
   };
 
   if (loading) return <div>Loading...</div>;
-console.log(user.role,'userrrr rlee ')
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -87,27 +88,37 @@ console.log(user.role,'userrrr rlee ')
           }
         />
 
-<Route
+        <Route
           path="/Employee/Dashboard"
           element={
             user?.role === "employee" ? (
-              <EmployeeDashboard/>
+              <EmployeeDashboard />
             ) : (
               <Navigate to="/" />
             )
           }
         />
 
-
-<Route
-path="/company/attendence"
+        <Route
+          path="/company/attendence"
           element={
-            user?.role === "systemAdmin" ? <EmployerAttendanceDashboard/> : <Navigate to="/" />
+            user?.role === "systemAdmin" ? (
+              <EmployerAttendanceDashboard />
+            ) : (
+              <Navigate to="/" />
+            )
           }
-
-
-
-/>
+        />
+          <Route
+          path="/Employee/leave"
+          element={
+            user?.role === "employee" ? (
+              <EmployeeLeaveApplication/>
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
 
         {/* <Route
           path="/company/Employee"
